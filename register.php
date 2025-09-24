@@ -1,8 +1,18 @@
 <?php
 session_start();
-$_SESSION['name'] = $_POST['name'];
-$_SESSION['age'] = $_POST['age'];
-$_SESSION['email'] = $_POST['email'];
+
+if (isset($_POST['submit'])) {
+    $_SESSION['user_data'] = [
+        'name' => $_POST['name'],
+        'age' => $_POST['age'],
+        'email' => $_POST['email']
+    ];
+    header('Location: profile.php?view-details=true');
+    exit();
+} else {
+    header('Location: register.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
